@@ -1,20 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
+<ion-header [translucent]="true" >
+  <ion-toolbar color="danger">
+    <ion-title >
+      QR APP
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding ion-text-center">
+  <ion-segment [(ngModel)]="segment" value="pizza">
+    <ion-segment-button value="scan">
+      <ion-label>Scan QR</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="generate">
+      <ion-label>Generate QR</ion-label>
+    </ion-segment-button>
+  </ion-segment>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+
+  <!-- ===== Scan QR ===== -->
+  <div *ngIf="segment === 'scan'">
+    if segment is equal to scan
+  </div>
+  
+  <!-- ===== Generate QR ===== -->
+  <div *ngIf="segment === 'generate'">
+    <div class="segment-content">
+      <div class="qrImage">
+        <div class="d-flex-center ion-padding">
+
+          <div class="d-flex-center qr-wrapper">
+            <qr-code [value]="qrText" size="190" errorCorrectionLevel="M"></qr-code>
+          </div>
+        </div>
+        <div class="ion-padding">
+          {{qrText}}
+        </div>
+      </div>
+      <ion-textarea 
+      label="Escribe algo para convertirlo a código QR"
+      labelPlacement="stacked"
+      fill="outline"
+      [(ngModel)]="qrText"
+      >
+       
+      </ion-textarea>
+    </div>
   </div>
 </ion-content>

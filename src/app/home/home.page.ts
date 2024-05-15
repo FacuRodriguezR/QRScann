@@ -7,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
+  segment = 'generate';
+  qrText = 'https://www.redautoshop.com.ar/'
+
   constructor() {}
 
 }
